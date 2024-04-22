@@ -1,7 +1,7 @@
 import streamlit as st
 import plotly.express as px
 
-st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
+st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='collapsed', page_icon=":bar_chart:")
 
 # Custom CSS to inject for aligning content within columns
 st.markdown("""
