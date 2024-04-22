@@ -1,5 +1,5 @@
 import streamlit as st
-#import plotly.express as px
+import plotly.express as px
 
 st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
 
@@ -43,8 +43,8 @@ with col3:
         
 if st.session_state.page == "Home":
     # Create a Plotly figure
-    #df = px.data.iris()
-    #dummy_graph = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
+    df = px.data.iris()
+    dummy_graph = px.scatter(df, x="sepal_width", y="sepal_length", color="species")
 
     # Display it in a Streamlit app
    
