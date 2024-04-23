@@ -75,12 +75,18 @@ if st.session_state.page == "Home":
     
     st.title("# My Streamlit App with a Plotly Chart")
     st.write("This is a simple Streamlit app. Click the fullscreen button at the bottom right to toggle fullscreen mode.")
+    
+    
+    st.write("community plotly events")
+    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=True, key="pe_selected")
+    st.write(selected_data2)
+    
+    
+    st.write("official plotly events")
     selected_data = st.plotly_chart(dummy_graph, on_select="rerun")
     st.write(selected_data)
     
-    st.write("plotly events")
-    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=True, key="pe_selected")
-    st.write(selected_data2)
+    
     
     #if st.button('Analyze Selected Data'):
     #    st.write("Placeholder for analyzing selected data.")
