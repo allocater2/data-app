@@ -2,5 +2,5 @@ altair
 numpy
 pandas
 pydeck
-streamlit
+streamlit==1.32.2
 plotly
