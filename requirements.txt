@@ -4,3 +4,4 @@ pandas
 pydeck
 streamlit==1.32.2
 plotly
+streamlit-plotly-events

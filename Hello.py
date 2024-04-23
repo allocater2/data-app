@@ -1,6 +1,8 @@
+# streamlit run Hello.py
+
 import streamlit as st
 import plotly.express as px
-#from ipyplotly import plotly_events
+from streamlit_plotly_events import plotly_events
 #from ipywidgets import widgets
 #import ipywidgets as widgets
 #from IPython.display import display
@@ -70,15 +72,19 @@ if st.session_state.page == "Home":
     dummy_graph.update_layout(dragmode='select')
     
     # Display it in a Streamlit app
-   
+    
     st.title("# My Streamlit App with a Plotly Chart")
     st.write("This is a simple Streamlit app. Click the fullscreen button at the bottom right to toggle fullscreen mode.")
-    select_data = st.plotly_chart(dummy_graph, on_select="rerun")
-    st.write(select_data)
+    selected_data = st.plotly_chart(dummy_graph, on_select="rerun")
+    st.write(selected_data)
     
-    if st.button('Analyze Selected Data'):
-        st.write("Placeholder for analyzing selected data.")
-        #selected_data = plotly_events(fig, click_event=True, select_event=True, key="pe_selected")
+    st.write("plotly events")
+    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=True, key="pe_selected")
+    st.write(selected_data2)
+    
+    #if st.button('Analyze Selected Data'):
+    #    st.write("Placeholder for analyzing selected data.")
+        
 
     
 elif st.session_state.page == "Analysis":
