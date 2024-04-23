@@ -78,7 +78,7 @@ if st.session_state.page == "Home":
     
     
     st.write("community plotly events")
-    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=True, key="pe_selected")
+    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=False, key="pe_selected")
     st.write(selected_data2)
     
     
