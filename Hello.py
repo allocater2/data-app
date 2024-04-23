@@ -10,6 +10,12 @@ from streamlit_plotly_events import plotly_events
 
 st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
 
+# Retrieve the Streamlit version
+streamlit_version = st.__version__
+
+# Display the version in a Streamlit app
+st.write(f"Running Streamlit version: {streamlit_version}")
+
 # Custom CSS to inject for aligning content within columns
 st.markdown("""
 <style>
