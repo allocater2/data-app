@@ -2,8 +2,8 @@ import streamlit as st
 import plotly.express as px
 #from ipyplotly import plotly_events
 #from ipywidgets import widgets
-import ipywidgets as widgets
-from IPython.display import display
+#import ipywidgets as widgets
+#from IPython.display import display
 
 
 st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
@@ -25,8 +25,8 @@ st.markdown("""
 st.write("hello");
 
 # does not render
-slider = widgets.IntSlider(value=10, min=0, max=100, step=1, description='Test Slider:')
-display(slider)
+#slider = widgets.IntSlider(value=10, min=0, max=100, step=1, description='Test Slider:')
+#display(slider)
 
 # low level API
 import plotly.graph_objects as go
@@ -78,7 +78,7 @@ if st.session_state.page == "Home":
     
     if st.button('Analyze Selected Data'):
         st.write("Placeholder for analyzing selected data.")
-        selected_data = plotly_events(fig, click_event=True, select_event=True, key="pe_selected")
+        #selected_data = plotly_events(fig, click_event=True, select_event=True, key="pe_selected")
 
     
 elif st.session_state.page == "Analysis":
