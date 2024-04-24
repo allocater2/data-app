@@ -12,7 +12,6 @@ st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar
 
 # Retrieve the Streamlit version
 streamlit_version = st.__version__
-
 # Display the version in a Streamlit app
 st.write(f"Running Streamlit version: {streamlit_version}")
 
@@ -30,7 +29,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-st.write("hello");
+#st.write("hello");
 
 # does not render
 #slider = widgets.IntSlider(value=10, min=0, max=100, step=1, description='Test Slider:')
@@ -41,7 +40,7 @@ import plotly.graph_objects as go
 fig = go.Figure(data=[go.Scatter(x=[1, 2, 3, 4], y=[10, 11, 12, 13], mode='markers', marker=dict(size=[40, 60, 80, 100]))])
 fig.update_layout(clickmode='event+select')
 #fig.show()
-st.plotly_chart(fig)
+#st.plotly_chart(fig)
 
 
 
@@ -84,13 +83,17 @@ if st.session_state.page == "Home":
     
     
     st.write("community plotly events")
-    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=False, key="pe_selected")
-    st.write(selected_data2)
+    # missing color
+    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=False) #key="pe_selected"
+    st.dataframe(selected_data2)
     
     
     st.write("official plotly events")
+    # does not work on the .app site
+    # no hover
     selected_data = st.plotly_chart(dummy_graph, on_select="rerun")
-    st.write(selected_data)
+    if selected_data.get('select') != None:
+        st.dataframe( selected_data.select["points"])
     
     
     
