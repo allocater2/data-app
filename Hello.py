@@ -8,12 +8,12 @@ from streamlit_plotly_events import plotly_events
 #from IPython.display import display
 
 
-st.set_page_config(page_title='My Graph App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
+st.set_page_config(page_title='Energynautics App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
 
 # Retrieve the Streamlit version
-streamlit_version = st.__version__
+#streamlit_version = st.__version__
 # Display the version in a Streamlit app
-st.write(f"Running Streamlit version: {streamlit_version}")
+#st.write(f"Running Streamlit version: {streamlit_version}")
 
 # Custom CSS to inject for aligning content within columns
 st.markdown("""
@@ -78,17 +78,18 @@ if st.session_state.page == "Home":
     
     # Display it in a Streamlit app
     
-    st.title("# My Streamlit App with a Plotly Chart")
-    st.write("This is a simple Streamlit app. Click the fullscreen button at the bottom right to toggle fullscreen mode.")
+    st.title("Home - Chart Selection Test")
+    #st.write("This is a simple Streamlit app. Click the fullscreen button at the bottom right to toggle fullscreen mode.")
+    st.write("Energynautics Test App - Select Data in the Chart")
     
     
-    st.write("community plotly events")
+    #st.write("community plotly events")
     # missing color
-    selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=False) #key="pe_selected"
-    st.dataframe(selected_data2)
+    #selected_data2 = plotly_events(dummy_graph, click_event=True, select_event=True, hover_event=False) #key="pe_selected"
+    #st.dataframe(selected_data2)
     
     
-    st.write("official plotly events")
+    #st.write("official plotly events")
     # does not work on the .app site
     # no hover
     selected_data = st.plotly_chart(dummy_graph, on_select="rerun")
