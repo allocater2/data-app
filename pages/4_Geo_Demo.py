@@ -110,7 +110,7 @@ fig.update_layout(clickmode='event+select')
 selected_data = st.plotly_chart(fig, on_select="rerun", use_container_width=True)
 if selected_data.get('select') != None:
     st.dataframe( selected_data.select["points"] )
-    st.dataframe( selected_data.select["lines"] )
+    #st.dataframe( selected_data.select["lines"] )
     st.write("selected")
 else:
     st.write('click')
