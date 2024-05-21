@@ -256,6 +256,6 @@ if(st.button("🗺️ Change Location")):
     st.session_state.location_id = None
     st.experimental_rerun()
     
-if(st.button(f"🎖️ Start 5 Days Challenge with {st.session_state.clicked_building} at Location {st.session_state.location_id}")):
+if(st.button(f"🎖️ Start 5 Days Challenge with {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}")):
     st.write("Coming Soon...");
     
