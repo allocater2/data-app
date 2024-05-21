@@ -73,7 +73,7 @@ st.markdown("""
     
     
     
-col1, col2, col3 = st.columns(3)
+col1, col2, col3, col4 = st.columns(4)
 with col1:
     
     if not st.session_state.player_id:
@@ -85,10 +85,10 @@ with col1:
     else:
         st.write(f"Player {st.session_state.player_id}")
     
-with col3:
-    st.markdown('<div class="right-align-container">', unsafe_allow_html=True)
+with col4:
+    #st.markdown('<div class="right-align-container">', unsafe_allow_html=True)
     exit_button = st.button("🚪 End Game Session")
-    st.markdown('</div>', unsafe_allow_html=True)
+    #st.markdown('</div>', unsafe_allow_html=True)
             
     if exit_button:
         st.session_state.clicked_building = None
