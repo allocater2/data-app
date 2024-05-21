@@ -10,28 +10,6 @@ from streamlit_plotly_events import plotly_events
 
 st.set_page_config(page_title='Energynautics App', layout='centered', initial_sidebar_state='expanded', page_icon=":bar_chart:")
 
-
-def get_new_player_id():
-    return 47
-
-if 'player_id' not in st.session_state:
-    st.session_state.player_id = get_new_player_id()
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
 # Retrieve the Streamlit version
 #streamlit_version = st.__version__
 # Display the version in a Streamlit app
