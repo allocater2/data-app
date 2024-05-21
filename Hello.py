@@ -236,8 +236,8 @@ if not st.session_state.location_id:
     exit()
 else:
     if not st.session_state.clicked_building:
-        st.write(f"You decided to build at Location {st.session_state.location_id}")
-        if(st.button("📍 Change Location")):
+        st.write(f"You decided to build at 📍 Location {st.session_state.location_id}")
+        if(st.button("🗺️ Change Location")):
             st.session_state.location_id = None
             st.experimental_rerun()
 
@@ -247,12 +247,12 @@ if not st.session_state.location_id or not st.session_state.clicked_building:
     
     
     
-st.write(f'You decided to build {st.session_state.clicked_building} at Location {st.session_state.location_id}')
+st.write(f'You decided to build {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}')
 if(st.button("♻️ Change Facility")):
     st.session_state.clicked_building = None
     st.experimental_rerun()
     
-if(st.button("📍 Change Location")):
+if(st.button("🗺️ Change Location")):
     st.session_state.location_id = None
     st.experimental_rerun()
     
