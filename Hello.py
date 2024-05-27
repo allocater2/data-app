@@ -1,4 +1,3 @@
-# streamlit run Hello.py
 
 import streamlit as st
 import plotly.express as px
@@ -6,6 +5,7 @@ from streamlit_plotly_events import plotly_events
 import pandas as pd
 import plotly.graph_objects as go
 import os
+from PIL import Image
 
 #from ipywidgets import widgets
 #import ipywidgets as widgets
@@ -20,6 +20,8 @@ if 'player_id' not in st.session_state:
     st.session_state.player_id = None
 if 'location_id' not in st.session_state:
     st.session_state.location_id = None
+if 'started_test' not in st.session_state:
+    st.session_state.started_test = None
     
 def get_new_player_id():
     if os.path.exists('player_id.txt'):
@@ -33,35 +35,74 @@ def get_new_player_id():
         file.write(str(current_player_id))
         return current_player_id
 
+###################################################################################################
 
-
-
-
+#stHorizontalBlock
+    #column
+        #stVerticalBlockBorderWrapper
+            #garbage
+                #stVerticalBlock
+    #column
+    #column
+ #stVerticalBlock 
+    #div.st-emotion-cache-1jjmcle
 st.markdown("""
     <style>
     
-    .element-container:has(#button-after) + div button 
+    .block-container
+    {
+        padding: 30px;
+    }
+    
+    div[data-testid="column"]:has(span) div div div
+    {
+        gap: 0rem;
+    }
+    
+   
+    .element-container:has(#right-align-content) ~ div div 
+    {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .element-container:has(svg) div div
+    {
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .element-container:has(#button-after-fill) ~ div div button 
     {
         width: 100%;
     }
 
-    .block-container
+/* tests and experiments */
+
+    div.row-widget
     {
-        padding: 50px;
-    }
+        #display: flex;
+        #justify-content: flex-end;
+    }    
     
-    <style>
     .right-align-container 
     {
         display: flex;
         justify-content: flex-end;
     }
-    </style>
 
     </style>
     """, unsafe_allow_html=True)
     
     
+
+# Load SVG content from a file
+with open("energynautics-logo.svg", "r") as file:
+    svg_content = file.read()
+
+# Display the SVG using Streamlit's markdown functionality
+#st.markdown(f'<div style="width:200px;text-align:center;">{svg_content}</div>', unsafe_allow_html=True)
+
 
 
 #if not st.session_state.player_id:
@@ -87,6 +128,7 @@ with col1:
     
 with col4:
     #st.markdown('<div class="right-align-container">', unsafe_allow_html=True)
+    st.markdown('<span id="right-align-content"></span>', unsafe_allow_html=True)
     exit_button = st.button("🚪 End Game Session")
     #st.markdown('</div>', unsafe_allow_html=True)
             
@@ -100,12 +142,12 @@ with col4:
 
 
 # Initialize session state to store clicked building
-
+buildings = ["☀️ Solar Power Plant", "🌬️ Wind Farm", "🌋 Geothermal Power Plant", "💧 Hydrolyzer", "🖥️ Serverfarm", "🔥 Industrial Heat Pump"]
+    
 if not st.session_state.clicked_building:
     st.write("What do you want to build?")
 
     # Create ten columns for ten buttons
-    buildings = ["☀️ Solar Power Plant", "🌬️ Wind Farm", "🌋 Geothermal Power Plant", "💧 Hydrolyzer", "🖥️ Serverfarm", "🔥 Industrial Heat Pump"]
     
     # .row-widget button
     # .e1f1d6gn5 div div div div div div button
@@ -119,7 +161,7 @@ if not st.session_state.clicked_building:
     # Add a button in each column
     for i, building in enumerate(buildings):
         with columns[i]:
-            st.markdown('<span id="button-after"></span>', unsafe_allow_html=True)
+            st.markdown('<span id="button-after-fill"></span>', unsafe_allow_html=True)
             if st.button(building, key=f"button{i}"): #, help="This is a facility"):
                 st.session_state.clicked_building = building
                 st.experimental_rerun()
@@ -136,6 +178,7 @@ else:
             st.markdown('<span id="spacer"></span>', unsafe_allow_html=True)
             if(st.button("♻️ Change Facility")):
                 st.session_state.clicked_building = None
+                st.session_state.started_test = None
                 st.experimental_rerun()
             
             
@@ -239,23 +282,111 @@ else:
         st.write(f"You decided to build at 📍 Location {st.session_state.location_id}")
         if(st.button("🗺️ Change Location")):
             st.session_state.location_id = None
+            st.session_state.started_test = None
             st.experimental_rerun()
 
 if not st.session_state.location_id or not st.session_state.clicked_building:
     exit()
     
     
+setups = st.columns(4)
+with setups[0]:    
+    st.write(f'You decided to build {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}')
+with setups[1]:    
+    if(st.button("♻️ Change Facility")):
+        st.session_state.clicked_building = None
+        st.session_state.started_test = None
+        st.experimental_rerun()
+with setups[2]:    
+    if(st.button("📍 Change Location")):
+        st.session_state.location_id = None
+        st.session_state.started_test = None
+        st.experimental_rerun()
     
     
-st.write(f'You decided to build {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}')
-if(st.button("♻️ Change Facility")):
-    st.session_state.clicked_building = None
-    st.experimental_rerun()
     
-if(st.button("🗺️ Change Location")):
-    st.session_state.location_id = None
-    st.experimental_rerun()
+# start gate
+if(not st.session_state.started_test):
+    if(st.button(f"⚙️ Test {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id} for 5 days")):
+        st.session_state.started_test = True
+        st.experimental_rerun()
+    exit()
+     
     
-if(st.button(f"🎖️ Start 5 Days Challenge with {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}")):
-    st.write("Coming Soon...");
+st.write("Generating random weather...");
+
+
+#symbols1 = ['🍒', '🍋', '🍊', '🍉', '🍇', '🔔', '⭐'];
+symbols1 = ['☀️', '⛅', '🌧️'];
+symbols2 = ['🌬️', '💤',];
+symbols3 = ['❄️', '🌡️'];
+
+names = {
+    '☀️': "Sunny",
+    '⛅': "Cloudy",
+    '🌬️': "Windy",
+    '💤': "Calm",
+    '❄️': "Cold",
+    '🌧️': "Rainy",
+    '🌡️': "Hot",
+}
+
+ratings = ['️⚠️ Redipatch', '🚨 Curtailment', '✅ Perfect'];
+
+import random as r
+from time import sleep
+
+#print(range(100))
+
+for day in range(5):
+    day_slots = st.columns(5)
+    with day_slots[0]:
+        placeholder1 = st.empty()
+    with day_slots[1]:
+        placeholder2 = st.empty()
+    with day_slots[2]:
+        placeholder3 = st.empty()
+    with day_slots[3]:
+        placeholder4 = st.empty()
+    with day_slots[4]:
+        placeholder5 = st.empty()
+
+    placeholder1.write(f"Day {day+1}:")
+
+    for i in range(20):
+        sleep(0.05) # 0.01 0.05
+        sun = symbols1[r.randint(0,len(symbols1) - 1)]
+        wind = symbols2[r.randint(0,len(symbols2) - 1)]
+        temp = symbols3[r.randint(0,len(symbols3) - 1)]
+        #st.write(f"winner: {winner}")
+        #st.write(symbols[winner])
+        placeholder2.write(f"{sun}{wind}{temp}")
+
+    placeholder3.write(f"{names[sun]} {names[wind]} {names[temp]}")
+
+    rating = ratings[r.randint(0,len(ratings) - 1)]
+    placeholder4.write(rating)
     
+    #placeholder5.button("🔍 Analyze Scenario", key=f"analyze{day}")
+
+score_column = st.columns(5)
+with score_column[0]:
+    st.write("Final Score:");
+with score_column[1]:
+    score_board = st.empty()
+    
+score = r.randint(3,9)
+for day in range(score):
+    sleep(0.3)
+    stars = "";
+    for star in range(day + 1):
+        stars = stars + "⭐"
+    score_board.write(stars)
+
+sleep(0.5)
+
+st.write(f"Best {st.session_state.clicked_building} at 📍 Location {st.session_state.location_id}! 🎉🎉🎉");
+
+st.button("🎲 Roll Weather Again (3 🎲🎲🎲 rerolls remaining)")    
+
+

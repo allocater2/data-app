@@ -1,0 +1,26 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Component</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+</head>
+<body>
+    <div id="animation"></div>
+    <script>
+        const svg = d3.select("#animation").append("svg")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        svg.append("circle")
+            .attr("cx", 250)
+            .attr("cy", 250)
+            .attr("r", 0)
+            .transition()
+            .duration(2000)
+            .attr("r", 200);
+    </script>
+</body>
+</html>
