@@ -12,7 +12,7 @@ from PIL import Image
 #from IPython.display import display
 
 
-st.set_page_config(page_title='Energynautics App', layout='wide', initial_sidebar_state='collapsed', page_icon=":bar_chart:")
+st.set_page_config(page_title='Energynautics App v0.3', layout='wide', initial_sidebar_state='collapsed', page_icon=":bar_chart:")
 
 if 'clicked_building' not in st.session_state:
     st.session_state.clicked_building = None
