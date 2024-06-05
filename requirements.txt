@@ -2,7 +2,8 @@ altair
 numpy
 pandas
 pydeck
+streamlit==1.35
 #streamlit==1.32.2
-./streamlit-1.32.2-py2.py3-none-any.whl
+#./streamlit-1.32.2-py2.py3-none-any.whl
 plotly
 streamlit-plotly-events
